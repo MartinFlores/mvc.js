@@ -1,24 +1,44 @@
 var inboxController = {
 	index: function(){
-		console.log('hola');
 		var data = {
 			name: 'Inbox',
 			msgs: [
 			{
 				name: 'Martin',
 				msg: 'sd',
-				date: 'ayer'
+				date: 'Ayer'
 			},
 			{
 				name: 'Martin',
 				msg: 'HAY Q PESADO',
-				date: 'antier'
+				date: 'Antier'
+			},
+			{
+				name: 'David',
+				msg: 'Esta muy elegante we',
+				date: 'Hoy'
 			}]
 		}
-		$('#app').showView('inbox', data);
+		$('#app').showView('inbox/inbox', data);
 	},
 
-	create: function() {
-		alert('create');
+	send: function() {
+		var data = {
+			name: 'Envia tu mensaje',
+			contacts: [
+			{
+				name: 'Martin',
+				phoneNumber: 'xx xx xx xx xx'
+			},
+			{
+				name: 'Sergio',
+				phoneNumber: 'xx xx xx xx xx',
+			},
+			{
+				name: 'David',
+				phoneNumber: 'xx xx xx xx xx',
+			}]
+		}
+		$('#app').showView('inbox/send', data);
 	}
 }

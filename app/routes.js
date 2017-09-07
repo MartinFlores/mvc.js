@@ -13,6 +13,13 @@ var routes = {
     });
   },
 
+  //==>> localhost/#/inbox
+  'inbox/send': function () {
+    nx.importController('inbox', function() {
+      inboxController.send();
+    });
+  },
+
 
   //==>> localhost/#/profile
   'profile': function () {

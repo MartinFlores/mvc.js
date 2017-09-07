@@ -1,0 +1,18 @@
+<div>
+	<h5><a href="#/inbox">Regresar</a></h5>
+
+	<h1>$name</h1>
+	<input type="text">
+	<ul>
+		#each-$contacts
+		<li>Nombre: $contacts.name || Teléfono: $contacts.phoneNumber</li>
+		#endeach-$contacts
+	</ul>
+
+	<ul>
+		<li><a href="#/inbox">inbox</a></li>
+		<li><a href="#/profile">profile</a></li>
+		<li><a href="#/">index</a></li>
+	</ul>
+
+</div>

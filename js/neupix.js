@@ -75,13 +75,13 @@ var nx = {
 	controllerOnInit: false,
 	hashBlock: false,
 	init: function() {
-		$('body').append('<div id="header-app"></div>');
+		// $('body').append('<div id="header-app"></div>');
 		$('body').append('<div id="app"></div>');	
 		// $('body').append('<div id="select" class="trans3"><ul class="select_box shadow"><li>Día</li><li>01</li><li>02</li></ul></div>');	
 		// $('body').append('<div id="footer-app"></div>');	
 		// $('head').append('<script src="./js/stats.min.js"></script>');
 		if (!nx.header_use) {
-			$('#app').showView('header');
+			// $('#app').showView('header');
 			// $('#footer-app').showView('footer');
 
 			header_use=true;
