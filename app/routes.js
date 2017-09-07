@@ -1,31 +1,24 @@
-var route = Rlite(notFound, {
-  // Default route
+var routes = {
+  // Default route ==>> localhost/#/
   '': function () {
     nx.importController('index', function() {
       indexController.index();
     });
   },
 
-  // #inbox
+  //==>> localhost/#/inbox
   'inbox': function () {
     nx.importController('inbox', function() {
       inboxController.index();
     });
+  },
+
+
+  //==>> localhost/#/profile
+  'profile': function () {
+    nx.importController('profile', function() {
+      profileController.index();
+    });
   }
-});
+};
 
-function notFound() {
-  return '<h1>404 Not found :/</h1>';
-}
-
-// Hash-based routing
-function processHash() {
-  var hash = location.hash || '#';
-
-  // Do something useful with the result of the route
-  // document.body.textContent = route(hash.slice(1));
-  route(hash.slice(1));
-}
-
-window.addEventListener('hashchange', processHash);
-processHash();
