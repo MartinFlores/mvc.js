@@ -1,16 +1,12 @@
 var routes = {
   // Default route ==>> localhost/#/
   '': function () {
-    nx.importController('index', function() {
-      indexController.index();
-    });
+    controller('index').run();
   },
 
   //==>> localhost/#/inbox
   'inbox': function () {
-    nx.importController('inbox', function() {
-      inboxController.index();
-    });
+    controller('inbox').run();
   },
 
   //==>> localhost/#/inbox
@@ -19,7 +15,6 @@ var routes = {
       inboxController.send();
     });
   },
-
 
   //==>> localhost/#/profile
   'profile': function () {

@@ -1,5 +1,5 @@
-var indexController = {
-	index: function(){
-		$('#app').showView('index');
-	}
+var indexController = {};
+
+indexController.index = function() {
+	view('index').render();
 }

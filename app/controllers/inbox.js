@@ -19,7 +19,8 @@ var inboxController = {
 				date: 'Hoy'
 			}]
 		}
-		$('#app').showView('inbox/inbox', data);
+		view('other').render(data);
+		// $('#app').showView('inbox/inbox', data);
 	},
 
 	send: function() {

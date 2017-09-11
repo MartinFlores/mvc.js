@@ -1,5 +1,5 @@
 var profileController = {
 	index: function(){
-		$('#app').showView('profile/profile');
+		console.log('profile');
 	}
 }
