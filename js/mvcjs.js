@@ -32,6 +32,7 @@ view = function(nameView) {
 		* @returns {bool} if susccess return true
 		*/
 		render: function (data){
+			$('body').scrollTop(0);
 			view.import(nameView, data);
 			return true;
 		},
@@ -263,11 +264,15 @@ controller.current = null;
 /**
 * Init
 */
-controller.init = function () {
+controller.init = function (cb) {
 	console.log(config);
 	$.each(config.fixedControllers, function(index, val) {
 		controller(val).run();
 	});
+
+	wait(function() {
+		cb();
+	},100);
 }
 
 
@@ -288,34 +293,39 @@ controller.import = function(c, f) {
 	}
 }
 
+function notFound() {
+	window.location = '#/404';
+}
+// Hash-based routing
+function processHash() {
+
+	  	if (location.hash == "") {
+	  		window.location.hash = '#/';
+	  	}else{
+	  // 		try{
+			// 	nx.currentController.onExit();
+			// }catch(err){
+			// 	console.warn('onExit Function not found in Controller.');
+			// }
+		  	var hash = location.hash || '#';
+		  	route(hash.slice(1))
+		// Do something useful with the result of the route
+	  	// document.body.textContent = route(hash.slice(1));
+  	}
+  
+}
+
 
 $(function() {
 	$('body').append('<div id="controllers" style="display:none;"></div>');
 	$('body').append('<div id="views"></div>');
 	$('head').append('<script src="./app/routes.js"></script>');
-	controller.init();
-	var route = Rlite(notFound, routes);
-	function notFound() {
-		window.location = '#/404';
-	}
-	// Hash-based routing
-	function processHash() {
-		  	if (location.hash == "") {
-		  		window.location.hash = '#/';
-		  	}else{
-		  // 		try{
-				// 	nx.currentController.onExit();
-				// }catch(err){
-				// 	console.warn('onExit Function not found in Controller.');
-				// }
-			  	var hash = location.hash || '#';
-			  	route(hash.slice(1))
-			// Do something useful with the result of the route
-		  	// document.body.textContent = route(hash.slice(1));
-	  	}
-	  
-	}
-	window.addEventListener('hashchange', processHash)
+	controller.init(function() {
+		window.addEventListener('hashchange', processHash)
+		processHash();
+	});
 	
-	processHash();
 });
+
+window.onload = function(argument) {
+}
