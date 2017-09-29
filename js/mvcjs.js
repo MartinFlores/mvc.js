@@ -31,10 +31,17 @@ view = function(nameView) {
 		* @param {String} "data" vars for view
 		* @returns {bool} if susccess return true
 		*/
-		render: function (data){
-			$('body').scrollTop(0);
-			view.import(nameView, data);
-			return true;
+		render: function (data, callback){
+			if(typeof data === "function"){
+				$('body').scrollTop(0);
+				view.import(nameView, undefined, data);
+				return true;
+			}else{
+				$('body').scrollTop(0);
+				view.import(nameView, data, callback);
+				return true;	
+			}
+			
 		},
 
 
@@ -65,7 +72,7 @@ view.views = [];
 * Import View
 * @returns {string} the view html in string
 */
-view.import = function(v, data) {
+view.import = function(v, data, callback) {
     // console.log("data", data);	
 	if (v != undefined) {
 		v = v.replace('/', '-');
@@ -84,6 +91,7 @@ view.import = function(v, data) {
 					$('#'+v+'-view').html(html).show();
 				}
 				view.current = v+'-view';
+				callback();
 			    return true;
 			});
 		}else{
@@ -96,6 +104,7 @@ view.import = function(v, data) {
 						$('#'+v+'-view').html(this.html).show();
 					}
 					view.current = v+'-view';
+					callback();
 					return true;
 				}
 			});
@@ -302,15 +311,13 @@ function processHash() {
 	  	if (location.hash == "") {
 	  		window.location.hash = '#/';
 	  	}else{
-	  // 		try{
-			// 	nx.currentController.onExit();
-			// }catch(err){
-			// 	console.warn('onExit Function not found in Controller.');
-			// }
+	  		try{
+				controller.current['onExit']();
+			}catch(err){
+				console.warn('onExit Function not found in Controller.');
+			}
 		  	var hash = location.hash || '#';
 		  	route(hash.slice(1))
-		// Do something useful with the result of the route
-	  	// document.body.textContent = route(hash.slice(1));
   	}
   
 }
