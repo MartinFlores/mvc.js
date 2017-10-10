@@ -1,2 +1,3 @@
-# mvc.js
+# mvcjs
 Mvc pattern in js
+Page: https://martinflores.github.io/mvcjs/
