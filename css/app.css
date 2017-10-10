@@ -1,0 +1,129 @@
+h1, h2, h3, h4, h5, p{color: #222;}
+.bg-gray{background: #e5e5e5;border-radius: 3px;padding: 10px; margin-bottom: 10px;border:1px solid #fff;font-size: 14px;}
+.sc4 .d4, .border{border: 1px solid #ccc;}
+.title{text-transform: uppercase; letter-spacing: 5px;font-weight: bold;}
+.gradient{
+  background: linear-gradient(262deg,#fc785a,#f92d7f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -o-background-clip: text;
+  -ms-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  -o-text-fill-color: transparent;
+  -ms-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+
+@font-face {
+    font-family: 'btn';
+    src: url(../fonts/font.woff2);
+}
+
+:after, :before {
+    text-decoration: inherit;
+    vertical-align: inherit;
+}
+
+.btn {
+    color: #fff;
+    border-radius: 3px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'btn', sans-serif;
+    font-size: 1em;
+    outline: none;
+    letter-spacing: .0171em;
+    white-space: nowrap;
+    border-radius: 100px;
+    text-transform: uppercase;
+    transition: opacity .5s ease, background .5s ease;
+    transition: opacity .5s ease, background .5s ease;
+    -o-transition: opacity .5s ease, background .5s ease;
+    -ms-transition: opacity .5s ease, background .5s ease;
+    -moz-transition: opacity .5s ease, background .5s ease;
+    -webkit-transition: opacity .5s ease, background .5s ease;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .26);
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #fc785a;
+    opacity: 0;
+    border-radius: 100px;
+    transition: opacity .5s ease, background .5s ease;
+    -o-transition: opacity .5s ease, background .5s ease;
+    -ms-transition: opacity .5s ease, background .5s ease;
+    -moz-transition: opacity .5s ease, background .5s ease;
+    -webkit-transition: opacity .5s ease, background .5s ease;
+    z-index: 0;
+    background-size: 200% 200%;
+    background-position: 0 0;
+}
+
+.btn span {
+    font-family: 'btn', sans-serif;
+    outline: 0;
+    border: 0;
+    z-index: 2;
+}
+
+.btn-sweet {
+    background: #f92d7f;
+    background: linear-gradient(262deg, #fc785a, #f92d7f);
+}
+
+.btn-sweet:hover:before {
+    opacity: 1;
+    background: #f92d7f;
+}
+
+.btn-success {
+    background: #00b506;
+    background: linear-gradient(262deg, #22f509, #00b506);
+}
+
+.btn-success:hover:before {
+    opacity: 1;
+    background: #00b506;
+}
+
+.btn-info {
+    background: #0087d4;
+    background: linear-gradient(262deg, #27b8eb, #0087d4);
+}
+
+.btn-info:hover:before {
+    opacity: 1;
+    background: #0087d4;
+}
+
+.btn-warning {
+    background: #c4c436;
+    background: linear-gradient(262deg, #ffd400, #d6b511);
+}
+
+.btn-warning:hover:before {
+    opacity: 1;
+    background: #c4c436;
+}
+
+.btn-danger {
+    background: #ff1800;
+    background: linear-gradient(262deg, #ffa444, #ff1800);
+}
+
+.btn-danger:hover:before {
+    opacity: 1;
+    background: #ff1800;
+}

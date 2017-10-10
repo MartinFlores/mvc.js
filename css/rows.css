@@ -1,5 +1,45 @@
 @charset "UTF-8";
 
+input, textarea{
+  width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+input::-webkit-input-placeholder {
+    color:#cccc;
+}
+input:focus::-webkit-input-placeholder {
+    color:transparent;
+}
+
+/* Firefox < 19 */
+input:-moz-placeholder {
+    color:#cccc;
+}
+input:focus:-moz-placeholder {
+    color:transparent;
+}
+
+/* Firefox > 19 */
+input::-moz-placeholder {
+    color:#cccc;
+}
+input:focus::-moz-placeholder {
+    color:transparent;
+}
+
+/* Internet Explorer 10 */
+input:-ms-input-placeholder {
+    color:#cccc;
+}
+input:focus:-ms-input-placeholder {
+    color:transparent;
+}
 /*!
  * rows.css - http://ohuirasoft.com/rows
  * Version - 1.1.1
@@ -7,14 +47,28 @@
  *
  * Copyright (c) 2017 Martin Flores
  */
-
+.debug{border: 1px solid red;}
 html, body{padding: 0;margin: 0;font-family: sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
 *:active, *:hover, *:active, *:visited, *:focus {outline: 0;}
 a{text-decoration: none;}
 
-@import url('https://fonts.googleapis.com/css?family=Bitter:400,700');
+@font-face {
+    font-family: fr;
+    src: url(../fonts/PSRegular.ttf);
+}
+
+@font-face {
+    font-family: fb;
+    src: url(../fonts/PSBold.ttf);
+}
+
+@font-face {
+    font-family: 'btn';
+    src: url(../fonts/font.woff2);
+}
+
 *{
-  font-family: 'Bitter', serif;
+  font-family: Bitter, serif;
   position: relative;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -58,6 +112,11 @@ a{text-decoration: none;}
 .p30{padding: 30px!important}
 .p35{padding: 35px!important}
 .p40{padding: 40px!important}
+.pt0{padding-top: 0!important;}
+.pr0{padding-right: 0!important;}
+.pb0{padding-bottom: 0!important;}
+.pl0{padding-left: 0!important;}
+
 
 /* margins */
 .m0{margin: 0px!important}
@@ -69,6 +128,10 @@ a{text-decoration: none;}
 .m30{margin: 30px!important}
 .m35{margin: 35px!important}
 .m40{margin: 40px!important}
+.mt0{margin-top: 0!important;}
+.mr0{margin-right: 0!important;}
+.mb0{margin-bottom: 0!important;}
+.ml0{margin-left: 0!important;}
 .mb-xs{margin-bottom: 5px!important;}
 .mb-sm{margin-bottom: 10px!important;}
 .mb-md{margin-bottom: 20px!important;}
@@ -91,10 +154,11 @@ a{text-decoration: none;}
 .r:after{clear:both}
 
 /* algin texts */
-.txt-center{text-align: center!important;}
-.txt-left{text-align: left!important;}
-.txt-right{text-align: right!important;}
-.txt-justify{text-align: justify!important;}
+.txt-c{text-align: center!important;}
+.txt-l{text-align: left!important;}
+.txt-r{text-align: right!important;}
+.txt-j{text-align: justify!important;}
+.toe{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 
 h1{font-size:5.0rem;margin:1rem 0;line-height:1.2;letter-spacing:-0.1rem;}
 h2{font-size:4.2rem;margin:1rem 0;line-height:1.25;letter-spacing:-0.1rem;}
@@ -119,6 +183,7 @@ h6{font-size:1.5rem;margin:1rem 0;line-height:1.45;letter-spacing:-0.1rem;}
 .ps{position: static!important;}
 
 /* Extras */
+.boxed{max-width: 1050px;margin: auto;}
 .width-100{width: 100vw!important}
 .height-100{height: 100vh!important;}
 .height-90{height: 90vh!important;}
@@ -132,7 +197,6 @@ h6{font-size:1.5rem;margin:1rem 0;line-height:1.45;letter-spacing:-0.1rem;}
 .code{font-family: Menlo,Monaco,Consolas,"Courier New",monospace;background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 3px;padding: 0px 10px;}
 .abs-tl0{position: absolute;top: 0;left: 0;}
 
-
 /* Full width and heigth : fixed */
 .wh100{position: absolute;left: 0;top: 90px;width: 100%;height: 100%;background: #fff;}
 
@@ -140,8 +204,8 @@ h6{font-size:1.5rem;margin:1rem 0;line-height:1.45;letter-spacing:-0.1rem;}
 .pull-bottom{position: absolute;bottom:0;width:100%;}
 .hidden{visibility: hidden;}
 .ft{font-weight: 100;}
-.fm{font-weight: 400;}
-.fb{font-weight: bold;}
+.fr{font-family: fr;}
+.fb{font-family: fb;}
 .txt-vertical-center{overflow: hidden; display: table-cell; vertical-align: middle;float: none!important;}
 .center{
   text-align: center!important;
@@ -195,6 +259,7 @@ prop: value;
 .d11{width: 91.66666667%}
 .d12{width: 100%}
 .hide{display: none;}
+.hidei{display: none!important;}
 .show{display: block;}
 
 /* Laptop */

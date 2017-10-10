@@ -54,6 +54,10 @@ function isNumber(evt) {
     return true;
 }
 
+function active(el) {
+    $('.horizontal-menu li').removeClass('active');
+    $(el).addClass('active');
+}
 
 
 function hash(url, params) {
