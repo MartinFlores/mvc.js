@@ -31,10 +31,17 @@ view = function(nameView) {
 		* @param {String} "data" vars for view
 		* @returns {bool} if susccess return true
 		*/
-		render: function (data){
-			$('body').scrollTop(0);
-			view.import(nameView, data);
-			return true;
+		render: function (data, callback){
+			if(typeof data === "function"){
+				$('body').scrollTop(0);
+				view.import(nameView, undefined, data);
+				return true;
+			}else{
+				$('body').scrollTop(0);
+				view.import(nameView, data, callback);
+				return true;	
+			}
+			
 		},
 
 
@@ -65,8 +72,7 @@ view.views = [];
 * Import View
 * @returns {string} the view html in string
 */
-view.import = function(v, data) {
-    // console.log("data", data);	
+view.import = function(v, data, callback) {
 	if (v != undefined) {
 		v = v.replace('/', '-');
 		$('#views>div').hide();
@@ -84,6 +90,9 @@ view.import = function(v, data) {
 					$('#'+v+'-view').html(html).show();
 				}
 				view.current = v+'-view';
+				if(typeof callback === "function"){
+					callback();
+				}
 			    return true;
 			});
 		}else{
@@ -96,6 +105,9 @@ view.import = function(v, data) {
 						$('#'+v+'-view').html(this.html).show();
 					}
 					view.current = v+'-view';
+					if(typeof callback === "function"){
+						callback();
+					}
 					return true;
 				}
 			});
@@ -116,8 +128,8 @@ view.compile = function(html, data) {
 		$.each(data, function(index, val) {
 			if (typeof val == 'object') {
 				//inicio each
-				var size = index.length+7;
-				var from = parseInt(html.indexOf('#each $'+index));
+				var size = index.length+10;
+				var from = parseInt(html.indexOf('{{#each '+index+'}}'));
 				var to   = from+size;
 
 				//contenido a compilar
@@ -127,7 +139,7 @@ view.compile = function(html, data) {
 
 				//fin ecah-end
 				var size_end = index.length+10;
-				var from_end = parseInt(content.indexOf('#endeach $'+index));
+				var from_end = parseInt(content.indexOf('{{/each '+index+'}}'));
 				var to_end   = from_end+size_end;
 
 				//tomando el contenido a compilar
@@ -150,18 +162,18 @@ view.compile = function(html, data) {
 							var ctx = val[i];
 							var txt_tempAux = txt_tmp;
 							$.each(thisArr[i], function(index, val) {
-								txt_tempAux = txt_tempAux.split('$'+parentEach+'.'+index).join(ctx[index]);
+								txt_tempAux = txt_tempAux.split('{{'+parentEach+'.'+index+'}}').join(ctx[index]);
 							});
 							txt_fromat += txt_tempAux;
 						}
 					}catch(err){
 						for (var i = 0; i < val.length; i++) {
-							txt_fromat += txt_tmp.split('$'+index).join(val[i]);
+							txt_fromat += txt_tmp.split('{{'+index+'}}').join(val[i]);
 						}
 					}
 				}else{
 					for (var i = 0; i < val.length; i++) {
-						txt_fromat += txt_tmp.split('$'+index).join(val[i]);
+						txt_fromat += txt_tmp.split('{{'+index+'}}').join(val[i]);
 					}
 				}
 
@@ -178,7 +190,7 @@ view.compile = function(html, data) {
 				// console.log(content)
 
 
-				from_end = parseInt(content.indexOf('#endeach $'+index));
+				from_end = parseInt(content.indexOf('{{/each '+index+'}}'));
 				to_end   = from_end+size_end;
 				content = content.substr(0, to_end);
 
@@ -197,9 +209,45 @@ view.compile = function(html, data) {
 				// console.log('DE: '+from_end+' A: '+to_end);
 
 			}else{
+				// console.log("html1111", html);
+				html = html.split('{{'+index+'}}').join(val);
+				// console.log("html222-<<_", html);
 
-				console.log("html", html);
-				html = html.split('$'+index).join(val);
+				// compile ifs
+				/*if(typeof(val) === "boolean"){
+					if (val) {
+						toast('es boleano we el '+val);
+					  	// variable is a boolean
+						var size = index.length+8;
+						var from = parseInt(html.indexOf('{{#if '+index+'}}'));
+						var to   = from+size;
+
+						//contenido a compilar
+						var content = html;
+						//before if
+						var saveTop = content.substr(0, to-size);
+
+
+						content = content.substr(to);
+						console.log("guardar", saveTop);
+
+						// var saveBottom = 
+
+						//fin if
+						var size_end = index.length+8;
+						var from_end = parseInt(content.indexOf('{{/if '+index+'}}'));
+						var to_end   = from_end+size_end;
+
+						//tomando el contenido a compilar
+						content = content.substr(0, from_end);
+
+						console.log("content", content);
+
+						// console.log("html", html);
+						html += content;
+					}
+
+				}*/
 			}
 			// console.log(index+' => '+typeof val)
 		});
@@ -302,17 +350,16 @@ function processHash() {
 	  	if (location.hash == "") {
 	  		window.location.hash = '#/';
 	  	}else{
-	  // 		try{
-			// 	nx.currentController.onExit();
-			// }catch(err){
-			// 	console.warn('onExit Function not found in Controller.');
-			// }
+	  		try{
+				controller.current['onExit']();
+			}catch(err){
+				// console.warn('onExit Function not found in Controller.');
+			}
 		  	var hash = location.hash || '#';
 		  	route(hash.slice(1))
- 	}
+  	}
   
 }
-
 
 
 $(function() {
